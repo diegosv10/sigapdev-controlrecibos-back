@@ -10,6 +10,7 @@ function SelectCollection(req, res, next, whereIN){
     "SELECT " +      
     "alumno_programa.dni_m AS dni, " +
     "concepto.concepto as concepto, " +
+    "concepto.descripcion, " +
     "recaudaciones.id_alum, " + 
     "recaudaciones.numero as recibo, " + 
     "recaudaciones.id_rec, " +
@@ -22,6 +23,8 @@ function SelectCollection(req, res, next, whereIN){
     "moneda.moneda, " +
     "moneda.mascara, " +
     "programa.nom_programa as nombre_programa, " +
+    "programa.sigla_programa, " +
+    "programa.id_programa, " +
     "ubicacion.descripcion as ubicacion, "+
     "tipo.descripcion as tipo, "+
     "alumno_programa.cod_alumno as codigo, "+    
@@ -36,12 +39,12 @@ function SelectCollection(req, res, next, whereIN){
     "LEFT JOIN moneda ON moneda.id_moneda = recaudaciones.moneda "+
     "LEFT JOIN tipo ON tipo.id_tipo = recaudaciones.id_tipo "+
         where +
-    " ORDER BY alumno_programa.cod_alumno DESC, fecha DESC; "
+    " ORDER BY alumno_programa.cod_alumno DESC, fecha DESC ;"
 
     //"INNER JOIN alumno_alumno_programa ON alumno_alumno_programa.id_alum = alumno.id_alum " +
     //"INNER JOIN alumno_programa ON alumno_programa.cod_alumno = alumno_alumno_programa.cod_alumno " +
 
-    console.log(query);
+    //console.log(query);
     db.any(query)
         .then(function(data){
             // data.forEach(element => {
@@ -170,7 +173,7 @@ function GetObservation(req,res,next,idObservacion){
 }
 function InsertQuery(req, res, next, valores){
     let query=`insert into recaudaciones
-    (id_alum, id_concepto, id_registro, id_ubicacion, cod_alumno, numero, importe, observacion, fecha, validado, id_tipo, observacion_upg, moneda)
+    (id_alum, id_concepto, id_registro, id_ubicacion, cod_alumno, id_programa, numero, importe, observacion, fecha, validado, id_tipo, observacion_upg, moneda)
         values ${valores}`;
     console.log(query);
     db.any(query)
