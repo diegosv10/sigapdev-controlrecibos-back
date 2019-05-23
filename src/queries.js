@@ -13,6 +13,7 @@ function SelectCollection(req, res, next, whereIN){
     "concepto.descripcion, " +
     "recaudaciones.id_alum, " + 
     "recaudaciones.numero as recibo, " + 
+    "recaudaciones.id_registro, " +
     "recaudaciones.id_rec, " +
     "recaudaciones.importe, " +
     "recaudaciones.fecha, " +
