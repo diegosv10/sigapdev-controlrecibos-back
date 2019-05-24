@@ -13,11 +13,10 @@ function SelectCollection(req, res, next, whereIN){
     "concepto.descripcion, " +
     "recaudaciones.id_alum, " + 
     "recaudaciones.numero as recibo, " + 
-    "recaudaciones.id_registro, " +
     "CASE " +
         "WHEN recaudaciones.id_registro = 2103 THEN 'DIGITADO' " +
         "ELSE 'REMITIDO' " +
-    "END AS registro, " + 
+    "END AS id_registro, " + 
     "recaudaciones.id_rec, " +
     "recaudaciones.importe, " +
     "recaudaciones.fecha, " +
